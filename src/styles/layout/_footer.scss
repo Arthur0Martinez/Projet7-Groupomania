@@ -1,0 +1,73 @@
+.piedpage {
+    color: white;
+    background-color: #4E5166;
+    padding: 10px 25px 10px 0px;
+    margin-top: 2.5rem;
+
+    &__titre {
+        display: flex;
+        justify-content: center;
+        font-size: 25px;
+        margin-left: 5px;
+    }
+    &__texte {
+        display: flex;
+        justify-content: center;
+    }
+    &__nav {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin-left: 10px;
+        @media (min-width: 637px) {
+            flex-direction: row;
+        }
+        i {
+            display: none;
+        }
+        li {
+            margin: 7px 0;
+            text-decoration: none;
+            color: white;
+            transition: 200ms;
+            &:hover {
+                font-size: 22px;
+                transition: 200ms;
+            }
+            @media (min-width: 637px) {
+                padding: 0 50px 0 2px;
+            }
+        }
+        @media (max-width: 637px) {
+            li {
+                display: none;
+            }
+            a {
+                width: 20%;
+            }
+            i {
+                display: flex;
+                justify-content: center;
+                flex-direction: row;
+                color: white;
+                width: 15%;
+                margin: 7px ;
+                text-decoration: none;
+                color: white;
+                transition: 200ms;
+                font-size: 30px;
+                &:hover {
+                    font-size: 33px;
+                    transition: 200ms;
+                }
+            }
+        }
+    }
+    @media (max-width: 637px) {
+        &__nav {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+    }
+}

@@ -1,0 +1,107 @@
+.login, .sign, .created {
+    display: flex;
+    flex-direction: column;
+    background-color: #fd2b010a;
+    box-shadow: 0px 3px 20px 2px rgba(0, 0, 0, 0.5);
+    position: relative;
+    margin: 10% 30%;
+    width: 40%;
+    min-width: 40%;
+    height: 380px;
+    overflow: hidden;
+    border-radius: 15px;
+    display: inline-block;
+    text-decoration: none;
+    &__titre{
+        padding: 10px 20px;
+        &--validé{
+            margin: 1rem;
+            color: green;
+            font-size: 2rem;
+        }
+    }
+    &__email, &__mdp{
+        display: flex;
+        flex-direction: column;
+        &--text {
+            font-weight: 600;
+            margin: 0.5rem 0 0.5rem 0;
+            width: auto;
+        }
+        &--textholder {
+            width: 90%;
+            max-width: 350px;
+            border-color: black;
+            padding: 0.3rem;
+            border-radius: 10px;
+            transition: 250ms;
+            &:hover {
+                box-shadow: 0px 3px 5px 1px rgba(28, 28, 28, 0.229);
+                border-radius: 15px;
+                border-color: #4E5166;
+                transition: 250ms;
+            }
+        }   
+    }
+    &__envoyer{
+        text-decoration: none;
+        position: absolute;
+        bottom: 20px;
+        right: 40px;
+        display: flex;
+        color: black;
+        background-color: white;
+        box-shadow: 0px 6px 20px 2px rgba(28, 28, 28, 0.229);
+        padding: 10px 20px;
+        border-radius: 10px;
+        transition: 250ms;
+        &:hover {
+            font-size: 1.01rem;
+            box-shadow: 0px 6px 10px 2px rgba(28, 28, 28, 0.229);
+            transition: 250ms;
+            color: blue;
+
+        }
+        &--validé{
+            padding: 20px 30px;
+            font-size: 1.1rem;
+            &:hover{
+                font-size: 1.12rem;
+            }
+        }
+    }
+    @media (max-width: 837px) {
+        width: 90%;
+        margin: 25% 15px;
+    }
+}
+.special{
+    &__identifier{
+        position: absolute;
+        color: black;
+        top: 35px;
+        right: 40px;
+        margin-top: 10px;
+        font-size: 16px;
+        transition: 80ms;
+        &:hover {
+            font-size: 16.09px;
+            color: blue;
+            transition: 80ms;
+        }
+    }
+    &__connecter{
+        display: none;
+    }
+}
+#contenterror {
+    color: red;
+    margin: 4px;
+    font-size: 18px;
+}
+
+#comptecrée {
+    color: green;
+    margin: 4px;
+    font-size: 18px;
+}

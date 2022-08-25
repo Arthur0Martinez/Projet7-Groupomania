@@ -1,0 +1,120 @@
+/* Tete de page général commune à tous les sites */
+*{
+    text-decoration: none;
+}
+.titre {
+    box-shadow: 0px 3px 20px 2px rgba(0, 0, 0, 0.15);
+    display: flex;
+    width: 100%;
+    align-items: center;
+    padding: 15px 0px;
+    background-color: #FFD7D7;
+    &__lien{
+        color: black;
+        display: flex;
+        width: 100%;
+        height: auto;
+        margin: 0;
+        padding: 0;
+    }
+    &__apart{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &__image {
+        color: black;
+        display: none;
+        transition: 250ms;
+        &:hover {
+            transition: 250ms;
+            color: blue;
+        }
+    }
+    &__texte {
+        color: black;
+        display: flex;
+        width: 100%;
+        height: auto;
+        font-size: 2rem;
+        margin: 0;
+        margin-left: 2rem;
+        padding: 0;
+        transition: 250ms;
+        &:hover {
+            transition: 250ms;
+            color: blue;
+        }
+    }
+
+    &__deco {
+        display: flex;
+        color: black;
+        font-size: 22px;
+        margin: 0;
+        margin-right: 3rem;
+        transition: 250ms;
+        &:hover {
+            transition: 250ms;
+            color: blue;
+        }
+        &--mobile {
+            display: none;
+        }
+    }
+    &__publier {
+        display: flex;
+        color: black;
+        font-size: 22px;
+        margin-right: 3rem;
+        transition: 250ms;
+        &:hover {
+            transition: 250ms;
+            color: blue;
+        }
+        &--mobile {
+            display: none;
+        }
+    }
+        
+    @media (max-width: 737px) {
+        &__texte{
+            display: none;
+        }
+        &__image{
+            display: flex;
+            font-size: 2rem;
+            margin-left: 2rem;
+            margin-right: 55%;
+        }
+        &__deco{
+            display: none;
+            &--mobile{
+                display: flex;
+                font-size: 1.5rem;
+                color: black;
+                margin-right: 2rem;
+                transition: 250ms;
+                &:hover {
+                    transition: 250ms;
+                    color: blue;
+                }
+            }
+        }
+        &__publier{
+            display: none;
+            &--mobile{
+                display: flex;
+                font-size: 1.5rem;
+                color: black;
+                margin-right: 2rem;
+                transition: 250ms;
+                &:hover {
+                    transition: 250ms;
+                    color: blue;
+                }
+            }
+        }
+    }
+
+}

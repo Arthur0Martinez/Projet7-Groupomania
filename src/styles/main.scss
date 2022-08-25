@@ -1,0 +1,11 @@
+*{
+font-family: 'Lato', sans-serif;
+text-decoration: none;
+}
+@import "./layout/header";
+@import "./layout/footer";
+@import "./pages/login";
+@import "./pages/post";
+@import "./pages/homepage";
+@import "./pages/modifPubli";
+@import "./base/reset";
