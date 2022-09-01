@@ -64,7 +64,7 @@ const SignUpForm = () => {
                     value={password}
                 />
             </div>
-            <div id="contenterror"></div>
+            <div class="contenterror" id="contenterror"></div>
             <div id="comptecrée"></div>
             <br />
             <Link to="/"> 

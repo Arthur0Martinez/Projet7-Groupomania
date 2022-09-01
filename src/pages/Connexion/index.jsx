@@ -1,7 +1,6 @@
 import SignInForm from "../../components/SignIn"
 
-
-function Connexion() {   
+function Connexion() {
   return (
     <section class="login">
     <h2 class="login__titre">Se connecter</h2>

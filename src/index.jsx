@@ -12,6 +12,7 @@ import Footer from './components/Footer'
 import Error from './components/Error'
 import './styles/main.scss'
 import Publier from './pages/Publier'
+import { setAuthToken } from './components/SignIn'
 
 ReactDOM.render(
     <React.StrictMode>
@@ -48,3 +49,13 @@ ReactDOM.render(
     </React.StrictMode>,
 document.getElementById('root')
 )
+
+const token = localStorage.getItem("token");
+if (token) {
+    setAuthToken(token);
+}
+function timeOutToken(){
+    localStorage.clear()
+    window.location = "/";
+}
+setTimeout(timeOutToken, 1800000);

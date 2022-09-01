@@ -25,13 +25,14 @@ const SignInForm = () => {
 
             if ( /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/i.test(emailValue) &&
                    /^[A-Za-z0-9'\.\-\s\,]+$/i.test(passwordvalue)) {
-                window.location = "/post";
-                let userIdtk = JSON.stringify(res.data.userId)
+                window.location = "/post";                
+                let userId = res.data.userId
                 console.log(res.data.userId)
-                localStorage.setItem("userId", userIdtk)
-                let token = JSON.stringify(res.data.token)
+                localStorage.setItem("userId", userId)
+                let token = res.data.token
                 console.log(res.data.token)
-                localStorage.setItem("token", token)                   
+                localStorage.setItem("token", token)   
+                setAuthToken(token);
             } else {
                 contentError.innerHTML = "Erreur dans la saisie"
             }
@@ -67,7 +68,7 @@ const SignInForm = () => {
                     value={password}
                 />
             </div>
-            <div id="contenterror"></div>
+            <div class="contenterror" id="contenterror"></div>
             <br />
             <Link to="/new"> 
                 <p class="special__identifier">S'enregistrer ?</p>
@@ -80,4 +81,11 @@ const SignInForm = () => {
 
 export default SignInForm
 
+export const setAuthToken = token => {
+    if (token) {
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    }
+    else
+        delete axios.defaults.headers.common["Authorization"];
+ }
 

@@ -30,6 +30,11 @@
             transition: 250ms;
             color: blue;
         }
+        &--notlog{
+            &:hover{
+                color: black;
+            }
+        }
     }
     &__texte {
         color: black;
@@ -44,6 +49,13 @@
         &:hover {
             transition: 250ms;
             color: blue;
+        }
+        &--notlog{
+            left: 41%;
+            width: 40%;
+            &:hover{
+                color: black;
+            }
         }
     }
 

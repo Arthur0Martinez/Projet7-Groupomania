@@ -8,8 +8,10 @@ const fs = require('fs');
 exports.createThing = (req, res, next) => {
 
   //Problème avec cette ligne
-  const publication = JSON.parse(req.body.publication);
-  const { name, description, userId } = publication;
+  console.log('Affiche de body', req.body)
+  const publication = req.body;
+  const { name, description, userId, imageUrl } = publication;
+  console.log('Affiche de publication', publication);
 
   const thing = new Thing({
     userId,
@@ -18,10 +20,13 @@ exports.createThing = (req, res, next) => {
     likes: 0,
     dislikes: 0,
     usersLiked: [],
-    usersDisliked: [],    
-    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
-
+    usersDisliked: [],
+    imageUrl, 
+    //imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
   });
+  console.log('UserId de thing', thing)
+  console.log('Protocole http', req.protocol)
+  console.log('Affiche localhost numéro', req.get('host'))
   thing.save()
   .then(() => { res.status(201).json({message: 'Objet enregistré !'})})
   .catch(error => { res.status(400).json( { error })})

@@ -32,7 +32,7 @@ app.use(helmet());
 module.exports = app;
 
 //Connection à MongoDB, base de données non SQL
-mongoose.connect('mongodb+srv://Arthur:Arturo74@cluster0.i5g9cls.mongodb.net/?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PASSWORD + '@cluster0.i5g9cls.mongodb.net/?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))

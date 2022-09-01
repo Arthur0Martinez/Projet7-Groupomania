@@ -94,10 +94,16 @@
         display: none;
     }
 }
-#contenterror {
+.contenterror {
     color: red;
     margin: 4px;
+    margin-top: 12px;
     font-size: 18px;
+    &__post {
+        position: absolute;
+        left: 25px;
+        bottom: 70px;
+    }
 }
 
 #comptecrée {
