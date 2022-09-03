@@ -58,4 +58,5 @@ function timeOutToken(){
     localStorage.clear()
     window.location = "/";
 }
+
 setTimeout(timeOutToken, 1800000);

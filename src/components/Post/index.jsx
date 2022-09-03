@@ -38,7 +38,7 @@ const PostThing = () => {
                     console.log("Mal rempli")
                     error.innerHTML = "Erreur de serveur, merci de réessayer"                
                 }else{
-                    window.location = "/post";
+                    //window.location = "/post";
                 }
             })
             .catch((err) => {
@@ -63,8 +63,7 @@ const PostThing = () => {
                     />
                     <input
                         type="file" 
-                        accept="image/*"
-                        name="image" 
+                        name="filename" 
                         id="imageUrl"
                         class="post__img modif__image"
                         onChange={(e) => setImageUrl (e.target.value)} 

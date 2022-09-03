@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { element } from 'prop-types';
 import { setAuthToken } from "../../components/SignIn";
 
 function Afficher() {
@@ -17,6 +18,7 @@ function Afficher() {
         url: `http://localhost:5000/api/publication/${idProduct}`,
     })
     .then(function (res) {
+        console.log(res)
         console.log(res.data.userId)
         console.log(userId)
         if(res.data.userId === userId){
@@ -24,18 +26,12 @@ function Afficher() {
         }else{
             getOnePostNotAuth(res.data);
         }
+        likeAndDislike(res.data);
         deleteOnePost(res.data);
         modifyOnePost(res.data);
     })
 
-    axios({
-        method: "POST",
-        url: `http://localhost:5000/api/publication/${idProduct}/like`,
-        data: {
-            userId,
-            like : 0,
-        }
-    })
+
     function getOnePost(data) {
         const html = `
         <a class="post">
@@ -48,8 +44,8 @@ function Afficher() {
                         <button class='post__modifsuppr--supprimer' id="Supprimer">Supprimer</button>
                     </div>
                     <div class="post__avis">
-                        <i class="post__avis--like fa-solid fa-thumbs-up"></i>
-                        <i class="post__avis--dislike fa-solid fa-thumbs-down"></i>
+                        <i class="post__avis--like fa-solid fa-thumbs-up" id="Like"></i>
+                        <i class="post__avis--dislike fa-solid fa-thumbs-down" id="Dislike"></i>
                     </div>
                 </div>
         </a>`
@@ -64,15 +60,95 @@ function Afficher() {
                 <p class="post__text">${data.description}</p>
                 <div class="post__touslesbtn">
                     <div class="post__avis">
-                        <i class="post__avis--like fa-solid fa-thumbs-up"></i>
-                        <i class="post__avis--dislike fa-solid fa-thumbs-down"></i>
+                        <i class="post__avis--like fa-solid fa-thumbs-up" id="Like"></i>
+                        <i class="post__avis--dislike fa-solid fa-thumbs-down" id="Dislike"></i>
                     </div>
                 </div>
         </a>`
     const allPosts = document.getElementById("Post");
     allPosts.insertAdjacentHTML("beforeend", html);
     }
-    
+    function likeAndDislike(data) {
+        let likeBtn = document.getElementById("Like");
+        let dislikeBtn = document.getElementById("Dislike");
+        likeBtn.innerHTML = data.likes;
+        dislikeBtn.innerHTML = data.dislikes;
+        if(data.userLiked === userId){
+            console.log("Meme User")
+        }else if (data.userDisliked === userId){
+            console.log("Meme User")
+        }
+
+        likeBtn.addEventListener("click", (stop) => {
+            if(userId !== data.userLiked){
+                console.log("Like")
+                console.log(data)
+                axios({
+                    method: "POST",
+                    url: `http://localhost:5000/api/publication/${idProduct}/like`,
+                    data: {
+                        like: 1,
+                        userId,
+                    }
+                })
+                .then(function (res) {
+                    console.log(res.data)
+                    window.location.reload();
+                    likeAndDislike();
+                })
+            } else if (userId === data.userLiked) {
+                console.log("Like")
+                console.log(data)
+                axios({
+                    method: "POST",
+                    url: `http://localhost:5000/api/publication/${idProduct}/like`,
+                    data: {
+                        like: 0,
+                        userId,
+                    }
+                })
+                .then(function (res) {
+                    console.log(res.data)
+                    window.location.reload();
+                    likeAndDislike();
+                })
+            }
+        })
+
+        dislikeBtn.addEventListener("click", (stop) => {
+            if(userId !== data.userDisliked){
+                console.log("Dislike")
+                console.log(data)
+                axios({
+                    method: "POST",
+                    url: `http://localhost:5000/api/publication/${idProduct}/like`,
+                    data: {
+                        like: -1,
+                        userId,
+                    }
+                })
+                .then(function (res) {
+                    console.log(res.data)
+                    window.location.reload();
+                })
+            } else if (userId === data.userDisliked) {
+                console.log("Like")
+                console.log(data)
+                axios({
+                    method: "POST",
+                    url: `http://localhost:5000/api/publication/${idProduct}/like`,
+                    data: {
+                        like: 0,
+                        userId,
+                    }
+                })
+                .then(function (res) {
+                    console.log(res.data)
+                    window.location.reload();
+                })
+            }
+        })
+    }
     function deleteOnePost(data) {
         let deleteItemBtn = document.getElementById("Supprimer");
         deleteItemBtn.addEventListener("click", (stop) => {

@@ -1,4 +1,5 @@
 const multer = require('multer');
+console.log("multer");
 //Indication qui permet à Multer d'enregistrer les bons formats de fichiers
 const MIME_TYPES = {
   'image/jpg': 'jpg',
@@ -9,7 +10,8 @@ const MIME_TYPES = {
 //Configuration de Multer, qu'il sache où enregistrer les fichiers
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
-    callback(null, 'images');
+    console.log('Ui')
+    callback(null, '../images');
   },
   filename: (req, file, callback) => {
     console.log('Fichier image', file);

@@ -6,12 +6,11 @@ const fs = require('fs');
 //Logique métier POST
 //Permet de créer une publication à partir du fichier 'thing' dans le dossier 'models'
 exports.createThing = (req, res, next) => {
-
   //Problème avec cette ligne
-  console.log('Affiche de body', req.body)
+  //console.log('Affiche de body', req.body.imageUrl)
   const publication = req.body;
-  const { name, description, userId, imageUrl } = publication;
-  console.log('Affiche de publication', publication);
+  const { name, description, userId} = publication;
+  //console.log('Affiche de publication', publication);
 
   const thing = new Thing({
     userId,
@@ -21,12 +20,12 @@ exports.createThing = (req, res, next) => {
     dislikes: 0,
     usersLiked: [],
     usersDisliked: [],
-    imageUrl, 
-    //imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
   });
-  console.log('UserId de thing', thing)
-  console.log('Protocole http', req.protocol)
-  console.log('Affiche localhost numéro', req.get('host'))
+  //console.log('Thing', thing)
+  //console.log('imagurl de thing', thing.imageUrl)
+  console.log("Le req", req.body)
+
   thing.save()
   .then(() => { res.status(201).json({message: 'Objet enregistré !'})})
   .catch(error => { res.status(400).json( { error })})
@@ -98,6 +97,7 @@ exports.getOneThing = (req, res, next) => {
 //Logique métier GET
 //Récupère toutes les publications qui ont pu etre crées
 exports.getAllStuff = (req, res, next) => {
+  console.log("Le 2 est là pour voir")
   Thing.find().then(
     (things) => {
       res.status(200).json(things);

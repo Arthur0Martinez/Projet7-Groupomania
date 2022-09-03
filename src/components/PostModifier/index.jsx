@@ -8,21 +8,21 @@ const Modifier = () => {
     let token = localStorage.getItem("token");
     let error = document.getElementById("contenterror")
     
-    const getPostInfo = () => {
+    
+    const getPostInfo = (e) => {
         axios({
-            method: "GET",
             url: `http://localhost:5000/api/publication/${idProduct}`,
         })
         .then(function (res) {
             let nameId = document.getElementById("name");
+            nameId.placeholder = res.data.name;
+
             //let fileId = document.getElementById("imageUrl");
-            let descriptionId = document.getElementById("description");
-            //nameId.value = res.data.name;
             //---------A rajouter avec l'image
             //fileId.value = res.data.imageUrl;
             //---------
-            //descriptionId.value = res.data.description;
-            console.log(res.data)
+            let descriptionId = document.getElementById("description");
+            descriptionId.placeholder = res.data.description;
         })
 
     };
@@ -80,7 +80,7 @@ const Modifier = () => {
                             type="text" 
                             name="name" 
                             id="name"
-                            placeholder="Le titre"
+                            placeholder=""
                             class="post__titre modif__titre"
                             onChange={(e) => setName (e.target.value)} 
                             value={name}
@@ -99,7 +99,7 @@ const Modifier = () => {
                             type="text" 
                             name="description" 
                             id="description"
-                            placeholder="La description"
+                            placeholder=""
                             class="post__text modif__description"
                             onChange={(e) => setDescription (e.target.value)} 
                             value={description}

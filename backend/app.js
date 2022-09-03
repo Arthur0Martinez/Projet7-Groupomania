@@ -6,6 +6,7 @@ const stuffRoutes = require('./routes/publication');
 const userRoutes = require('./routes/user');
 const app = express();
 const path = require('path');
+require("dotenv").config();
 
 app.use(express.json());
 
