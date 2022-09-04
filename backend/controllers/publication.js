@@ -2,14 +2,16 @@
 const Thing = require('../models/thing');
 const express = require('express');
 const fs = require('fs');
+require("dotenv").config();
 
 //Logique métier POST
 //Permet de créer une publication à partir du fichier 'thing' dans le dossier 'models'
 exports.createThing = (req, res, next) => {
+  console.log("Coucou", req.file)
   //Problème avec cette ligne
   //console.log('Affiche de body', req.body.imageUrl)
   const publication = req.body;
-  const { name, description, userId} = publication;
+  const { name, description, userId, file} = publication;
   //console.log('Affiche de publication', publication);
 
   const thing = new Thing({
@@ -20,11 +22,11 @@ exports.createThing = (req, res, next) => {
     dislikes: 0,
     usersLiked: [],
     usersDisliked: [],
-    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+    imageUrl: `${req.protocol}://${req.get('host')}/uploads/${req.file}`,
   });
   //console.log('Thing', thing)
   //console.log('imagurl de thing', thing.imageUrl)
-  console.log("Le req", req.body)
+  console.log("Le req", thing)
 
   thing.save()
   .then(() => { res.status(201).json({message: 'Objet enregistré !'})})
@@ -37,19 +39,25 @@ exports.modifyThing = (req, res, next) => {
   let publication;
   const thingObject = req.file ? {
       ...JSON.parse(req.body.publication),
-      imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+      imageUrl: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
   } : { ...req.body };
 
   delete thingObject._userId;
   Thing.findOne({_id: req.params.id})
       .then((thing) => {
-          if (thing.userId != req.auth.userId) {
-              res.status(403).json({ message : 'unauthorized request'});
-          } else {
-              Thing.updateOne({ _id: req.params.id}, { ...thingObject, _id: req.params.id})
-              .then(() => res.status(200).json({message : 'Objet modifié!'}))
-              .catch(error => res.status(401).json({ error }));
-          }
+        if (req.auth.userId === process.env.ADMIN) {
+          Thing.updateOne({ _id: req.params.id}, { ...thingObject, _id: req.params.id})
+          .then(() => res.status(200).json({message : 'Objet modifié!'}))
+          .catch(error => res.status(401).json({ error }));
+        }else if (thing.userId != req.auth.userId) {
+          console.log(thing.userId)
+          console.log(req.auth.userId)
+          res.status(403).json({ message : 'unauthorized request'});
+        }else{
+          Thing.updateOne({ _id: req.params.id}, { ...thingObject, _id: req.params.id})
+          .then(() => res.status(200).json({message : 'Objet modifié!'}))
+          .catch(error => res.status(401).json({ error }));
+        }
       })
       .catch((error) => {
           res.status(400).json({ error });
@@ -61,16 +69,23 @@ exports.modifyThing = (req, res, next) => {
 exports.deleteThing = (req, res, next) => {
   Thing.findOne({ _id: req.params.id})
       .then(thing => {
-          if (thing.userId != req.auth.userId) {
-            res.status(403).json({ message : 'unauthorized request'});
-          } else {
-              const filename = thing.imageUrl.split('/images/')[1];
-              fs.unlink(`images/${filename}`, () => {
-                  Thing.deleteOne({_id: req.params.id})
-                      .then(() => { res.status(200).json({message: 'Objet supprimé !'})})
-                      .catch(error => res.status(401).json({ error }));
-              });
-          }
+        if (req.auth.userId === process.env.ADMIN){
+          const filename = thing.imageUrl.split('/images/')[1];
+          fs.unlink(`images/${filename}`, () => {
+              Thing.deleteOne({_id: req.params.id})
+                  .then(() => { res.status(200).json({message: 'Objet supprimé !'})})
+                  .catch(error => res.status(401).json({ error }));
+          });
+        }else if (thing.userId != req.auth.userId) {
+          res.status(403).json({ message : 'unauthorized request'});
+        }else {
+          const filename = thing.imageUrl.split('/images/')[1];
+          fs.unlink(`images/${filename}`, () => {
+              Thing.deleteOne({_id: req.params.id})
+                  .then(() => { res.status(200).json({message: 'Objet supprimé !'})})
+                  .catch(error => res.status(401).json({ error }));
+          });
+        }
       })
       .catch( error => {
           res.status(500).json({ error });

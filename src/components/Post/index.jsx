@@ -2,43 +2,47 @@ import axios from "axios"
 import React, { useState } from "react"
 import { setAuthToken } from "../SignIn";
 
-const PostThing = () => {
+function PostThing() {
     const [name, setName] = useState('');
     const [description, setDescription] = useState('');
-    const [file, setImageUrl] = useState('');
+    const [file, setFile] = useState();
     const token = localStorage.getItem("token");
     if (token) {
         setAuthToken(token);
     }else{
         window.location = "/";
     }
+
     const handlePost = (e) => {
         e.preventDefault();
+        const bigdata = new FormData();
+        bigdata.append("file", file);
+        console.log(file)
         let error = document.getElementById("contenterror")
         let userId = localStorage.getItem("userId");
         console.log(userId);
-        let imageUrl = file.match(/[^\\/]*$/)[0];
-        console.log(imageUrl);
+        //let image = file.match(/[^\\/]*$/)[0];
         if (/^[A-Za-z0-9'\.\-\s\,]+$/i.test(name) &&
         /^[A-Za-z0-9'\.\-\s\,]+$/i.test(description)) {
             axios({
                 method: "POST",
                 url: "http://localhost:5000/api/publication",
+                file,
                 data: {
                     name,
                     description,
                     userId,
-                    imageUrl,
                 },
 
             })
             .then((res) => {
                 console.log(res)
+                console.log(res.data)
                 if (res.data.errors) {
                     console.log("Mal rempli")
                     error.innerHTML = "Erreur de serveur, merci de réessayer"                
                 }else{
-                    //window.location = "/post";
+                    window.location = "/post";
                 }
             })
             .catch((err) => {
@@ -63,11 +67,13 @@ const PostThing = () => {
                     />
                     <input
                         type="file" 
-                        name="filename" 
+                        name="image" 
                         id="imageUrl"
                         class="post__img modif__image"
-                        onChange={(e) => setImageUrl (e.target.value)} 
-                        value={file}
+                        onChange={(e) => {                        
+                            const file = e.target.files[0];
+                            setFile(file)
+                        }} 
                     />
                     <i class="fa-solid fa-file-arrow-up modif__icone"></i>
                     <textarea

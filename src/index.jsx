@@ -15,38 +15,36 @@ import Publier from './pages/Publier'
 import { setAuthToken } from './components/SignIn'
 
 ReactDOM.render(
-    <React.StrictMode>
         <Router>
-        <Header />
-        <Switch>
-            <Route exact path="/">
-                <Connexion />
-            </Route>
-            <Route path="/new">
-                <Identifier />
-            </Route>
-            <Route path="/validnew">
-                <IdentificationRéussi />
-            </Route>
-            <Route path="/post">
-                <Post />
-            </Route>
-            <Route path="/afficher">
-                <Afficher />
-            </Route>
-            <Route path="/publier">
-                <Publier />
-            </Route>
-            <Route path="/modifier">
-                <Modifier />
-            </Route>
-            <Route>
-                <Error />
-            </Route>
-        </Switch>
-        <Footer />
-        </Router>
-    </React.StrictMode>,
+            <Header />
+            <Switch>
+                <Route exact path="/">
+                    <Connexion />
+                </Route>
+                <Route path="/new">
+                    <Identifier />
+                </Route>
+                <Route path="/validnew">
+                    <IdentificationRéussi />
+                </Route>
+                <Route path="/post">
+                    <Post />
+                </Route>
+                <Route path="/afficher">
+                    <Afficher />
+                </Route>
+                <Route path="/publier">
+                    <Publier />
+                </Route>
+                <Route path="/modifier">
+                    <Modifier />
+                </Route>
+                <Route>
+                    <Error />
+                </Route>
+            </Switch>
+            <Footer />
+        </Router>,
 document.getElementById('root')
 )
 

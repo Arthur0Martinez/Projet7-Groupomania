@@ -18,10 +18,7 @@ function Afficher() {
         url: `http://localhost:5000/api/publication/${idProduct}`,
     })
     .then(function (res) {
-        console.log(res)
-        console.log(res.data.userId)
-        console.log(userId)
-        if(res.data.userId === userId){
+        if(res.data.userId === userId || userId === "631497518ebf7f8b633326f0"){
             getOnePost(res.data);
         }else{
             getOnePostNotAuth(res.data);
@@ -71,18 +68,29 @@ function Afficher() {
     function likeAndDislike(data) {
         let likeBtn = document.getElementById("Like");
         let dislikeBtn = document.getElementById("Dislike");
+        console.log("Users qui ont like", data.usersLiked)
+        console.log("Users qui ont dislike", data.usersDisliked)
+        console.log("User qui est connecté à la page", userId)
         likeBtn.innerHTML = data.likes;
         dislikeBtn.innerHTML = data.dislikes;
-        if(data.userLiked === userId){
-            console.log("Meme User")
-        }else if (data.userDisliked === userId){
-            console.log("Meme User")
+        for (let i = 0; i < data.usersLiked.length; i++) {
+            console.log("On test L", data.usersLiked[i])
+            if(data.usersLiked[i] === userId){
+                console.log("User a Like")
+                dislikeBtn.setAttribute("style", "pointer-events: none; color: grey; opacity: 55%")         
+            }
+        }
+        for (let i = 0; i < data.usersDisliked.length; i++) {
+            console.log("On test DL", data.usersDisliked[i])
+            if (data.usersDisliked[i] === userId){
+                console.log("User a Dislike")
+                likeBtn.setAttribute("style", "pointer-events: none; color: grey; opacity: 55%")
+            }
         }
 
         likeBtn.addEventListener("click", (stop) => {
-            if(userId !== data.userLiked){
-                console.log("Like")
-                console.log(data)
+            stop.preventDefault();
+            if (data.usersLiked.length === 0) {
                 axios({
                     method: "POST",
                     url: `http://localhost:5000/api/publication/${idProduct}/like`,
@@ -96,29 +104,49 @@ function Afficher() {
                     window.location.reload();
                     likeAndDislike();
                 })
-            } else if (userId === data.userLiked) {
-                console.log("Like")
-                console.log(data)
-                axios({
-                    method: "POST",
-                    url: `http://localhost:5000/api/publication/${idProduct}/like`,
-                    data: {
-                        like: 0,
-                        userId,
+            }else{
+                for (let i = 0; i < data.usersLiked.length; i++) {
+                    if(userId !== data.usersLiked[i] ){
+                        console.log("Like")
+                        console.log(data)
+                        axios({
+                            method: "POST",
+                            url: `http://localhost:5000/api/publication/${idProduct}/like`,
+                            data: {
+                                like: 1,
+                                userId,
+                            }
+                        })
+                        .then(function (res) {
+                            console.log(res.data)
+                            window.location.reload();
+                            likeAndDislike();
+                        })
+                    } else if (userId === data.usersLiked[i]) {
+                        console.log("Like")
+                        console.log("C'est là")
+                        console.log(data)
+                        axios({
+                            method: "POST",
+                            url: `http://localhost:5000/api/publication/${idProduct}/like`,
+                            data: {
+                                like: 0,
+                                userId,
+                            }
+                        })
+                        .then(function (res) {
+                            console.log(res.data)
+                            window.location.reload();
+                            likeAndDislike();
+                        })
                     }
-                })
-                .then(function (res) {
-                    console.log(res.data)
-                    window.location.reload();
-                    likeAndDislike();
-                })
+                }
             }
         })
 
         dislikeBtn.addEventListener("click", (stop) => {
-            if(userId !== data.userDisliked){
-                console.log("Dislike")
-                console.log(data)
+            stop.preventDefault();
+            if (data.usersDisliked.length === 0) {
                 axios({
                     method: "POST",
                     url: `http://localhost:5000/api/publication/${idProduct}/like`,
@@ -130,22 +158,44 @@ function Afficher() {
                 .then(function (res) {
                     console.log(res.data)
                     window.location.reload();
+                    likeAndDislike();
                 })
-            } else if (userId === data.userDisliked) {
-                console.log("Like")
-                console.log(data)
-                axios({
-                    method: "POST",
-                    url: `http://localhost:5000/api/publication/${idProduct}/like`,
-                    data: {
-                        like: 0,
-                        userId,
+            }else{
+                for (let i = 0; i < data.usersDisliked.length; i++) {
+                    if(userId !== data.usersDisliked[i]){
+                        console.log("Dislike")
+                        console.log(data)
+                        axios({
+                            method: "POST",
+                            url: `http://localhost:5000/api/publication/${idProduct}/like`,
+                            data: {
+                                like: -1,
+                                userId,
+                            }
+                        })
+                        .then(function (res) {
+                            console.log(res.data)
+                            window.location.reload();
+                            likeAndDislike();
+                        })
+                    } else if (userId === data.usersDisliked[i]) {
+                        console.log("Like")
+                        console.log(data)
+                        axios({
+                            method: "POST",
+                            url: `http://localhost:5000/api/publication/${idProduct}/like`,
+                            data: {
+                                like: 0,
+                                userId,
+                            }
+                        })
+                        .then(function (res) {
+                            console.log(res.data)
+                            window.location.reload();
+                            likeAndDislike();
+                        })
                     }
-                })
-                .then(function (res) {
-                    console.log(res.data)
-                    window.location.reload();
-                })
+                }
             }
         })
     }

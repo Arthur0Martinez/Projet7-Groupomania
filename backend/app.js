@@ -7,7 +7,7 @@ const userRoutes = require('./routes/user');
 const app = express();
 const path = require('path');
 require("dotenv").config();
-
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 
 //Définit les authorisations d'utilisation de l'API
@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 //Récupère les différentes routes et données images stockées liées à l'API
 app.use('/api/publication', stuffRoutes);
 app.use('/api/auth', userRoutes);
-app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use(express.static('uploads'))
 
 //Utilise l'extension helmet pour une protection supplémentaire
 //Enlève la possibilité de savoir quel logiciel a été utilisé pour le serveur
@@ -38,3 +38,4 @@ mongoose.connect('mongodb+srv://' + process.env.MONGO_USERNAME + ':' + process.e
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
+

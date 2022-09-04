@@ -50,7 +50,6 @@ const Modifier = () => {
                 data: {
                     name,
                     description,
-                    userId,
                     imageUrl,
                 },
 
