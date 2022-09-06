@@ -106,7 +106,7 @@
             transition: 200ms;
             &:hover {
                 transition: 200ms;
-                color: blue;
+                color: $couleurboutonhover;
             }
         }
         &--dislike {
@@ -116,7 +116,7 @@
             transition: 200ms;
             &:hover {
                 transition: 200ms;
-                color: blue;
+                color: $couleurboutonhover;
             }
         }
     }

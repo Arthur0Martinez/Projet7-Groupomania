@@ -1,17 +1,12 @@
 import axios from 'axios';
-import { setAuthToken } from "../../components/SignIn";
 
-
-function Post() {  
-    let token = localStorage.getItem("token");
-    if (token) {
-        setAuthToken(token);
-    }else{
-        window.location = "/";
-    }
+//Fonction qui va venir afficher toutes les publications enregistrer sur l'API
+function GetPost(){
+    //On récupère les publications l'aide de la méthode GET en passant par axios
     axios.get("http://localhost:5000/api/publication")
     .then(function (res) {
         let arrayAllPost = res.data;
+        //On inverse l'ordre des publications de res.data. Cela permet d'afficher les publications dans un ordre chronologique
         let arrayAllPostReverse = arrayAllPost.reverse(); 
         console.log(arrayAllPostReverse);
         getAllPost(res.data);
@@ -19,7 +14,8 @@ function Post() {
     .catch((err) => {
         console.log("Mauvais", err);
     });
-
+    //Fonction qui vient récupérer toutes les données de data en s'exectutant à chaque élément. 
+    //Cela s'arrete lorsque la variable i atteint le nombre de publication présent dans data.
     function getAllPost(data) {
         for (let i = 0; i < data.length; i++) {
             const html = `
@@ -33,17 +29,6 @@ function Post() {
             allPosts.insertAdjacentHTML("beforeend", html);
           }
     }
-
-        return (
-            <main>
-            <h2 class="page__title">Posts de la communauté</h2>
-            
-            <section class="allpost" id="items">
-              
-            </section>
-        </main>
-        )
-
 }
 
-export default Post
+export default GetPost

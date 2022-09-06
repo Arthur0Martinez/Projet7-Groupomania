@@ -17,7 +17,7 @@ const normalizePort = val => {
   }
   return false;
 };
-//Définit le serveur sur le port 8000 et lance l'API
+//Définit le serveur sur le port 5000 et lance l'API
 const port = normalizePort(process.env.PORT || '5000');
 app.set('port', port);
 

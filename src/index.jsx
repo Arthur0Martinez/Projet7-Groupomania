@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import Connexion from './pages/Connexion'
 import Identifier from './pages/Identifier'
 import IdentificationRéussi from './pages/IdentificationReussi';
-import Post from './pages/Post'
+import Post from './pages/Posts'
 import Afficher from './pages/Afficher'
 import Modifier from './pages/Modifier'
 import Header from './components/Header'
@@ -14,6 +14,8 @@ import './styles/main.scss'
 import Publier from './pages/Publier'
 import { setAuthToken } from './components/SignIn'
 
+//Dans le Router on vient mettre toutes les routes qui ont été crées dans notre App React
+//On les affiche toutes en fonction de l'url rentrée
 ReactDOM.render(
         <Router>
             <Header />
@@ -48,10 +50,7 @@ ReactDOM.render(
 document.getElementById('root')
 )
 
-const token = localStorage.getItem("token");
-if (token) {
-    setAuthToken(token);
-}
+//Fonction TimeOut qui va venir déconnecter l'utilisateur après 30min d'absence
 function timeOutToken(){
     localStorage.clear()
     window.location = "/";

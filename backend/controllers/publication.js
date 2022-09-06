@@ -8,11 +8,10 @@ require("dotenv").config();
 //Permet de créer une publication à partir du fichier 'thing' dans le dossier 'models'
 exports.createThing = (req, res, next) => {
   console.log("Coucou", req.file)
-  //Problème avec cette ligne
-  //console.log('Affiche de body', req.body.imageUrl)
   const publication = req.body;
   const { name, description, userId, file} = publication;
-  //console.log('Affiche de publication', publication);
+  const fileJSON = req.body.file;
+  console.log("Le file", fileJSON);
 
   const thing = new Thing({
     userId,
@@ -22,11 +21,9 @@ exports.createThing = (req, res, next) => {
     dislikes: 0,
     usersLiked: [],
     usersDisliked: [],
-    imageUrl: `${req.protocol}://${req.get('host')}/uploads/${req.file}`,
+    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.body.file}`,
   });
-  //console.log('Thing', thing)
-  //console.log('imagurl de thing', thing.imageUrl)
-  console.log("Le req", thing)
+  console.log("Le req", thing);
 
   thing.save()
   .then(() => { res.status(201).json({message: 'Objet enregistré !'})})

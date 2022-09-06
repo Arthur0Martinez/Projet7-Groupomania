@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom"
 
+//Page qui vient s'afficher après la première identification
+//Elle ramène l'utilisateur vers la page Connexion
 function IdentificationRéussi() {
     return (
       <section class="created">

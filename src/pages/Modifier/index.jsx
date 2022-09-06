@@ -1,6 +1,9 @@
-import PostModifier from "../../components/PostModifier"
+import PostModifier from "../../components/ModifyPost"
 
+//Page permettant de modifier les publications faites par l'utilisateur
 function Modifier() {
+  //On vérifie que le token est bien présent avant de donner accès à l'application
+  //Sinon on renvoie à la page de connexion
   let getToken = localStorage.getItem("token");
   if (getToken !== null) {
     return (

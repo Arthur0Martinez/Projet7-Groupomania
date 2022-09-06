@@ -1,6 +1,9 @@
-import PostThing from "../../components/Post"
+import PostThing from "../../components/CreatePost"
 
+//Page de l'application permettant à un utilisateur de crée une publication
 function Publier() {
+  //On vérifie que le token est bien présent avant de donner accès à l'application
+  //Sinon on renvoie à la page de connexion
   let getToken = localStorage.getItem("token");
   if (getToken !== null) {
     return (

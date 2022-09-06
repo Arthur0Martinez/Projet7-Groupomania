@@ -1,4 +1,4 @@
-
+//Affiche le Footer de la page sur toute l'application
 function Footer() {
     return (
     <footer class="piedpage">

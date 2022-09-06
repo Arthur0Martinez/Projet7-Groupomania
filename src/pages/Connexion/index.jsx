@@ -1,5 +1,6 @@
 import SignInForm from "../../components/SignIn"
 
+//Page de connexion de l'application
 function Connexion() {
   return (
     <section class="login">

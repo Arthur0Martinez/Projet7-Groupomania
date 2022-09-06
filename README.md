@@ -1,3 +1,10 @@
+# This App is run with React
+
+## To setup the Backend folder
+
+## To setup the Root folder
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

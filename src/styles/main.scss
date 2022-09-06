@@ -1,11 +1,10 @@
-*{
-font-family: 'Lato', sans-serif;
-text-decoration: none;
-}
+@import "./utils/variables";
+
 @import "./layout/header";
 @import "./layout/footer";
+
 @import "./pages/login";
-@import "./pages/post";
-@import "./pages/homepage";
-@import "./pages/modifPubli";
+@import "./pages/displayAllPosts";
+@import "./pages/modifAndCreatePost";
+
 @import "./base/reset";

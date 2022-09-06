@@ -1,6 +1,6 @@
 .piedpage {
-    color: white;
-    background-color: #4E5166;
+    color: $couleurboutonfooter;
+    background-color: $couleurtertiaire;
     padding: 10px 25px 10px 0px;
     margin-top: 2.5rem;
 
@@ -28,7 +28,7 @@
         li {
             margin: 7px 0;
             text-decoration: none;
-            color: white;
+            color: $couleurboutonfooter;
             transition: 200ms;
             &:hover {
                 font-size: 22px;
@@ -49,11 +49,10 @@
                 display: flex;
                 justify-content: center;
                 flex-direction: row;
-                color: white;
                 width: 15%;
                 margin: 7px ;
                 text-decoration: none;
-                color: white;
+                color: $couleurboutonfooter;
                 transition: 200ms;
                 font-size: 30px;
                 &:hover {

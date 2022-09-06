@@ -1,6 +1,6 @@
 import SignUpForm from "../../components/SignUp"
 
-
+//Page qui permet de s'identifier pour la première fois sur le site
 function Identifier() {
   return (
     <section class="sign">

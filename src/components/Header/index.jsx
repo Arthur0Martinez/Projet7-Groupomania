@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
+//Header qui s'affiche sur toutes les pages. Se modifie en fonction de si l'utilisateur est connecté ou non
 const Header = () => {
+    //
     let getToken = localStorage.getItem("token");
     console.log(getToken)
-    
+    //On vérifie le token de l'utilisateur pour savoir si il est connecté.
+    //Si il l'est on affiche le Header complet
     if (getToken !== null) {
 
         return (
@@ -25,6 +28,8 @@ const Header = () => {
                 </nav>   
             </header>
         );
+    //Si l'utilisateur n'est pas connecté on limite son accès aux fonctionnalités du Header. 
+    //Par exemple la création de publication ou la déconnexion
     }else {
         return (
             <header class="titre">

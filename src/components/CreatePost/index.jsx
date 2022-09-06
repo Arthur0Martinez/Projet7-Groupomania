@@ -15,9 +15,8 @@ function PostThing() {
 
     const handlePost = (e) => {
         e.preventDefault();
-        const bigdata = new FormData();
-        bigdata.append("file", file);
-        console.log(file)
+        const file = new FormData();
+        file.append("file", file);
         let error = document.getElementById("contenterror")
         let userId = localStorage.getItem("userId");
         console.log(userId);
@@ -27,27 +26,31 @@ function PostThing() {
             axios({
                 method: "POST",
                 url: "http://localhost:5000/api/publication",
-                file,
                 data: {
                     name,
                     description,
                     userId,
+                    file,
                 },
+                headers: {
+                    'Content-Type': 'application/json', 
+                },
+
 
             })
             .then((res) => {
                 console.log(res)
                 console.log(res.data)
+                console.log("Le header", res.headers)
                 if (res.data.errors) {
                     console.log("Mal rempli")
                     error.innerHTML = "Erreur de serveur, merci de réessayer"                
                 }else{
-                    window.location = "/post";
+                    //window.location = "/post";
                 }
             })
             .catch((err) => {
                 console.log("Mauvais", err);
-                console.log(err.toJSON());
             })
         }else{
             error.innerHTML = "Champs remplis incorrects"
@@ -55,7 +58,7 @@ function PostThing() {
     }
     return (
         <section class="selectpost"> 
-                <form class="post post--sanshover modif__post" onSubmit={handlePost}>
+                <form class="post post--sanshover modif__post" id="form_post" onSubmit={handlePost}>
                     <input
                         type="text" 
                         name="name" 
