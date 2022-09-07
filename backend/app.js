@@ -20,15 +20,10 @@ app.use((req, res, next) => {
     next();
   });
 
-
-  app.get('/test',(req,res)=>{
-    res.send('hey i am server')
-  })
-
 //Récupère les différentes routes et données images stockées liées à l'API
 app.use('/api/publication', stuffRoutes);
 app.use('/api/auth', userRoutes);
-app.use(express.static('images'))
+app.use("/images", express.static(__dirname + '/images'));
 
 //Utilise l'extension helmet pour une protection supplémentaire
 //Enlève la possibilité de savoir quel logiciel a été utilisé pour le serveur
@@ -43,4 +38,3 @@ mongoose.connect('mongodb+srv://' + process.env.MONGO_USERNAME + ':' + process.e
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
-

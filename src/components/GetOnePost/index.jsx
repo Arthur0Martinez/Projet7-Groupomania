@@ -4,7 +4,7 @@ function getOnePost(data) {
     const html = `
     <a class="post">
             <h3 class="post__titre">${data.name}</h3>
-            <img class="post__img src={Desert} alt="post">
+            <img class="post__img" src=${data.imageUrl} alt="post">
             <p class="post__text">${data.description}</p>
             <div class="post__touslesbtn">
                 <div class="post__modifsuppr">

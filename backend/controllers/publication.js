@@ -9,9 +9,7 @@ require("dotenv").config();
 exports.createThing = (req, res, next) => {
   console.log("Coucou", req.file)
   const publication = req.body;
-  const { name, description, userId, file} = publication;
-  const fileJSON = req.body.file;
-  console.log("Le file", fileJSON);
+  const { name, description, userId} = publication;
 
   const thing = new Thing({
     userId,
@@ -21,7 +19,7 @@ exports.createThing = (req, res, next) => {
     dislikes: 0,
     usersLiked: [],
     usersDisliked: [],
-    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.body.file}`,
+    imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
   });
   console.log("Le req", thing);
 
@@ -34,9 +32,10 @@ exports.createThing = (req, res, next) => {
 //Permet de modifier la publication seulement si l'userId correspond, sinon il bloque la requète
 exports.modifyThing = (req, res, next) => {
   let publication;
+  console.log("Le req.body", req.body)
   const thingObject = req.file ? {
-      ...JSON.parse(req.body.publication),
-      imageUrl: `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
+      ...req.body,
+      imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
   } : { ...req.body };
 
   delete thingObject._userId;

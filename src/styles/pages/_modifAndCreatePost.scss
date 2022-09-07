@@ -66,6 +66,12 @@
         margin-left: -10px;
         border-radius: 10px;
         background-color: rgba(255, 0, 0, 0.23);
+        &--label{
+          position: absolute;
+          top: 134px;
+          left: 120px;
+          margin-right: 0.7rem;
+        }
     }
     &__icone{
         position: absolute;

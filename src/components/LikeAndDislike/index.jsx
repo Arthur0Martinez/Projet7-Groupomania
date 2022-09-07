@@ -12,8 +12,8 @@ function likeAndDislike(data) {
     console.log("Users qui ont dislike", data.usersDisliked)
     console.log("User qui est connecté à la page", userId)
     //On vient afficher le nombre de likes et de dislikes dans le HTML (données récupérées dans l'API)
-    likeBtn.innerHTML = data.likes;
-    dislikeBtn.innerHTML = data.dislikes;
+    likeBtn.innerHTML = data.usersLiked.length;
+    dislikeBtn.innerHTML = data.usersDisliked.length;
     //On vérifie quand la fonction se lance si l'utilisateur à déjà liker la publication
     //On vient récupérer cette info dans le userLiked, 
     //tableau qui contient les userId de toutes les personnes qui ont liker

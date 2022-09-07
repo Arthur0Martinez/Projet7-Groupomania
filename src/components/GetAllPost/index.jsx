@@ -17,11 +17,13 @@ function GetPost(){
     //Fonction qui vient récupérer toutes les données de data en s'exectutant à chaque élément. 
     //Cela s'arrete lorsque la variable i atteint le nombre de publication présent dans data.
     function getAllPost(data) {
+        console.log(data)
+        console.log(data[0].imageUrl)
         for (let i = 0; i < data.length; i++) {
             const html = `
                 <a href="afficher?id=${data[i]._id}" class="post">
                         <h3 class="post__titre">${data[i].name}</h3>
-                        <img class="post__img src= alt="post">
+                        <img class="post__img" src="${data[i].imageUrl} " alt="post"/>
                         <p class="post__text">${data[i].description}</p>
 
                 </a>`

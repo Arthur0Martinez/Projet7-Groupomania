@@ -10,10 +10,10 @@ const MIME_TYPES = {
 
 //Configuration de Multer, qu'il sache où enregistrer les fichiers
 const storage = multer.diskStorage({
-  destination: (req, file, callback) => {
-    callback(null, './images');
+  destination: (request, file, callback) => {
+    callback(null, 'images');
   },
-  filename: (req, file, callback) => {
+  filename: (request, file, callback) => {
     console.log('Fichier image', file);
     const name = file.originalname.split(' ').join('_');
     const extension = MIME_TYPES[file.mimetype];
