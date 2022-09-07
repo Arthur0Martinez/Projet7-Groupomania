@@ -6,13 +6,15 @@
 
 2) Créer un fichier .env à la racine du projet et mettre l'identifiant ADMIN (exemple dans le ficher .env.exemple).
 
-3) Créer un fichier .env dans le dossier backend et remplir les informations demandés, nottament vos identifiants MongoDB (exemple dans le ficher .env.exemple).
+3) Créer un fichier .env dans le dossier backend et remplir les informations demandés, nottament vos identifiants MongoDB et l'ADMIN (exemple dans le ficher .env.exemple).
 
-4) Lancer la commande npm install à la racine de l'application
+4) Lancer la commande yarn install à la racine de l'application
 
-5) A la racine du projet executer la commande yarn start
+5) Lancer la commande npm install dans le dossier du backend
 
-6) Dans le dossier backend executer la commande nodemon server
+6) A la racine du projet executer la commande yarn start
+
+7) Dans le dossier backend executer la commande nodemon server
 
 
 ## Les informations sur le projet :
