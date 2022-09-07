@@ -119,7 +119,7 @@ const Modifier = () => {
                                 setFile(file)
                             }} 
                         />
-                        <label class="modif__image--label" for="imageUrl">Choisir une nouvelle image ?</label>
+                        <label class="modif__image--label" for="imageUrl">Nouvelle image ?</label>
                         <i class="fa-solid fa-file-arrow-up modif__icone"></i>
                         <textarea
                             type="text" 

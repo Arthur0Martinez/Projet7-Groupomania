@@ -1,5 +1,10 @@
 # Cette application tourne sur React
 
+Le fichier .env à été envoyé sur GitHub pour s'implifier l'installation du projet. Il sera rajouté au Gitignore dès la fin de celle-çi
+
+Vérifier que yarn et nodemon sont bien installés sur votre machine
+
+
 ## Pour configurer l'application sur votre ordinateur :
 
 1) Cloner le projet ou télécharger le.
@@ -41,6 +46,7 @@ Le visuel du site à été composé de :
 - Une couleur secondaire : #FFD7D7
 
 - Une couleur tertiaire : #4E5166
+
 
 ## Contexte du projet :
 
