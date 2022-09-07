@@ -8,33 +8,33 @@
 
 3) Créer un fichier .env dans le dossier backend et remplir les informations demandés, nottament vos identifiants MongoDB et l'ADMIN (exemple dans le ficher .env.exemple).
 
-4) Lancer la commande yarn install à la racine de l'application
+4) Lancer la commande yarn install à la racine de l'application.
 
-5) Lancer la commande npm install dans le dossier du backend
+5) Lancer la commande npm install dans le dossier du backend.
 
-6) A la racine du projet executer la commande yarn start
+6) A la racine du projet executer la commande yarn start.
 
-7) Dans le dossier backend executer la commande nodemon server
+7) Dans le dossier backend executer la commande nodemon server.
 
 
 ## Les informations sur le projet :
 
 Groupomania est un réseau social d'entreprise fictif.
-Il à été crée dans le but d'améliorer la cohésion au sein de l'entreprise
+Il à été crée dans le but d'améliorer la cohésion au sein de l'entreprise.
 
 Il y est possible de :
 
-- S'enregistrer et se connecter de manière sécurisée
+- S'enregistrer et se connecter de manière sécurisée.
 
-- De créer des publications visibles par tout les utilisateurs
+- De créer des publications visibles par tout les utilisateurs.
  
-- De modifier et de supprimer les publications crées
+- De modifier et de supprimer les publications crées.
 
-- De noter les publications avec un système de likes/dislikes
+- De noter les publications avec un système de likes/dislikes.
 
 Le visuel du site à été composé de :
 
-- La police d'écriture Lato à été utilisé
+- La police d'écriture Lato à été utilisé.
 
 - Une couleur primaire : #FD2D01
 
