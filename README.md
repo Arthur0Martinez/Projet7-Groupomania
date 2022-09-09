@@ -1,7 +1,5 @@
 # Cette application tourne sur React
 
-Le fichier .env à été envoyé sur GitHub pour s'implifier l'installation du projet. Il sera rajouté au Gitignore dès la fin de celle-çi
-
 Vérifier que yarn et nodemon sont bien installés sur votre machine
 
 
