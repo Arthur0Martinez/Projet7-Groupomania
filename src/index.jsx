@@ -15,7 +15,7 @@ import Publier from './pages/Publier'
 import { setAuthToken } from './components/SignIn'
 
 //Dans le Router on vient mettre toutes les routes qui ont été crées dans notre App React
-//On les affiche toutes en fonction de l'url rentrée
+//On les affiche toutes en fonction de l'url rentré
 ReactDOM.render(
         <Router>
             <Header />
