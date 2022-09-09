@@ -29,7 +29,7 @@ const SignUpForm = () => {
 
             //Avec l'utilisation des REGEX on vient vérifier que les données écrites par l'utilisateur sont valides.
             if ( /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/i.test(emailValue) &&
-                 /^[A-Za-z0-9'\.\-\s\,]+$/i.test(passwordvalue)) {
+                 /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i.test(passwordvalue)) {
                 //Si oui on le renvoie vers la page /validnew
                 //L'utilisateur pourra désormais se connecter à l'application
                 window.location = "/validnew";
@@ -72,6 +72,7 @@ const SignUpForm = () => {
                     onChange={(e) => setPassword (e.target.value)} 
                     value={password}
                 />
+                <p login__mdp--text>Minimum 8 caractères 1 lettre et 1 nombre</p>
             </div>
             <div class="contenterror" id="contenterror"></div>
             <div id="comptecrée"></div>

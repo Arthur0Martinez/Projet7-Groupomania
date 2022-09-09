@@ -29,7 +29,7 @@ const SignInForm = () => {
 
             //Avec l'utilisation des REGEX on vient vérifier que les données écrites par l'utilisateur sont valides.
             if ( /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/i.test(emailValue) &&
-                   /^[A-Za-z0-9'\.\-\s\,]+$/i.test(passwordvalue)) {
+                 /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i.test(passwordvalue)) {
                 //Si oui on le renvoie vers la page /post
                 //Egalement, on stocke ses données de connexion crée par la réponse dans le local storage
                 window.location = "/post";                
@@ -77,6 +77,7 @@ const SignInForm = () => {
                     onChange={(e) => setPassword (e.target.value)} 
                     value={password}
                 />
+                <p>Minimum 8 caractères 1 lettre et 1 nombre</p>
             </div>
             <div class="contenterror" id="contenterror"></div>
             <br />
